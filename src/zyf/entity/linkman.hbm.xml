@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="zyf.entity.LinkMan" table="hb_linkman">
+		<id name="lkmId">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="lkmName"></property>
+		<property name="lkmPhone"></property>
+		<property name="lkmGender"></property>
+		<property name="lkmMobile"></property>
+		
+		<set name="cstCustomers" cascade="save-update" lazy="false" fetch="join">
+			<key column="l_lkmId"></key>
+			<one-to-many class="zyf.entity.Customer"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

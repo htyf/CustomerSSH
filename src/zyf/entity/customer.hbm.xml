@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="zyf.entity.Customer" table="hb_customer">
+		<id name="custId">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="custName" column="custName"></property>
+		<property name="custLevel" column="custLevel"></property>
+		<property name="custSource" column="custSource"></property>
+		<property name="custLinkman" column="custLinkman"></property>
+		<property name="custPhone" column="custPhone"></property>
+		<property name="custMobile" column="custMobile"></property>
+		<property name="custAddress" column="custAddress"></property>
+		<property name="custZip" column="custZip"></property>
+		<property name="custFax" column="custFax"></property>
+		<property name="custWebsite" column="custWebsite"></property>
+
+		<many-to-one name="lkmLinkMans" column="l_lkmId"
+			class="zyf.entity.LinkMan" lazy="false" fetch="join">
+		</many-to-one>
+		<!-- <set name="users" table="hb_UC" cascade="save-update" lazy="false" fetch="join">
+			<key column="uc_cid"></key>
+			<many-to-many class="zyf.entity.User" column="uc_uid"></many-to-many>
+		</set> -->
+	</class>
+
+
+
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	<hibernate-configuration>
+	<!-- 一个会话工厂对应一个数据库连接 -->
+	<session-factory>
+	<!-- 数据库连接4个以及一个数据库方言 
+		hibernate.dialect org.hibernate.dialect.MySQLDialect
+		hibernate.dialect org.hibernate.dialect.MySQLInnoDBDialect
+		hibernate.connection.driver_class com.mysql.jdbc.Driver
+		hibernate.connection.url jdbc:mysql:///test  如果ip地址是localhost并且端口号是3306 可以默认不写
+		hibernate.connection.username gavin
+		hibernate.connection.password-->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///ebuy</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">soysouce</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 显示sql语句     #hibernate.show_sql true-->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 格式化sql语句    hibernate.format_sql true -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- 自动生成sql语句   
+			hibernate.hbm2ddl.auto create-drop  先删除再创建再删除
+			hibernate.hbm2ddl.auto create	先删除再创建
+			hibernate.hbm2ddl.auto update	第一次创建，之后不创建，直接更新数据
+			hibernate.hbm2ddl.auto validate	-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!-- 绑定session到当前线程 -->
+		<property name="current_session_context_class">thread</property>
+		<!-- 加载的外部映射配置文件 -->
+		<mapping resource="zyf/entity/customer.hbm.xml"/>
+		<mapping resource="zyf/entity/linkman.hbm.xml"/>
+		<mapping resource="zyf/entity/user.hbm.xml"/>
+		
+	</session-factory>
+	
+	
+	</hibernate-configuration>

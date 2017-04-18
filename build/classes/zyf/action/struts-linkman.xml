@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="linkman" namespace="/" extends="struts-default">
+		<action name="linkman_*" class="zyf.action.LinkManAction"
+			method="{1}">
+			<result name="failed" type="redirect">jsp/error.jsp</result>
+			<result name="addSuccess"  type="redirect">jsp/success.jsp</result>
+			<result name="listSuccess">jsp/linkman/list.jsp</result>
+			<result name="updateSuccess">jsp/linkman/edit.jsp</result>
+			<result name="setupdateSuccess" type="redirect">linkman_listLinkMan</result>
+		</action>
+
+	</package>
+</struts>

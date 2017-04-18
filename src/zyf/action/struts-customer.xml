@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="customer" namespace="/" extends="struts-default">
+		<!-- 可以放多个拦截器或拦截器栈 -->
+		<interceptors>
+			<!-- 定义拦截器 -->
+			<interceptor name="encodeInterceptor" class="zyf.interceptor.EncodeInterceptor"></interceptor>
+			<interceptor name="isLoginInterceptor" class="zyf.interceptor.IsLoginInterceptor"></interceptor>
+			<interceptor name="isLoginInterceptor2" class="zyf.interceptor.IsLoginInterceptor2"></interceptor>
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="custStack">
+				<!-- 拦截器的引用 -->
+				<interceptor-ref name="encodeInterceptor"></interceptor-ref>
+				<!-- <interceptor-ref name="isLoginInterceptor"></interceptor-ref> -->
+				<interceptor-ref name="isLoginInterceptor2"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 全局的结果视图  拦截器中返回的“逻辑视图”，在拦截器中跳转界面的结果在这里设置 -->
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		<action name="customer_*" class="customerAction" method="{1}">
+			<!-- 
+				name: excludeMethods  设置不要过滤的方法
+					includeMethods  设置需要过滤的方法
+						  默认情况下，所有的方法都需要过滤,如果是给拦截器栈中的拦截器配置参数
+						 	写法：拦截器名.参数名
+					标签里的值是方法名，多个方法名之间用逗号隔开
+			-->
+			<!-- <interceptor-ref name="custStack">
+				<param name="isLoginInterceptor2.excludeMethods">isExistCustomer,getAllCustomer,
+				updateCustomer,update,deleteCustomer,getAllCustomersAjax,getAllCustsByLidAjax</param>
+			</interceptor-ref> -->
+			<result name="failed">/jsp/error.jsp</result>
+			<result name="addSuccess">/jsp/success.jsp</result>
+			<result name="listSuccess">/jsp/customer/list.jsp</result>
+			<result name="updateSuccess">/jsp/customer/edit.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
